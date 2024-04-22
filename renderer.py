@@ -25,7 +25,8 @@ test = """
 
 letters = {"A": " ### \n#   #\n#   #\n#   #\n#####\n#   #\n#   #\n#   #\n", "B": "#### \n#   #\n#   #\n#### \n#   #\n#   #\n#   #\n#### \n", "C": " ### \n#   #\n#    \n#    \n#    \n#    \n#   #\n ### \n",
            "D": "#### \n#   #\n#   #\n#   #\n#   #\n#   #\n#   #\n#### \n", "E": "#####\n#    \n#    \n#### \n#    \n#    \n#    \n#####\n", "F": "#####\n#    \n#    \n#### \n#    \n#    \n#    \n#    \n",
-           "G": " ### \n#   #\n#    \n# ###\n#   #\n#   #\n#   #\n ### \n", "H": "#   #\n#   #\n#   #\n#####\n#   #\n#   #\n#   #\n#   #\n", "I": "###\n # \n # \n # \n # \n # \n # \n###\n"}
+           "G": " ### \n#   #\n#    \n# ###\n#   #\n#   #\n#   #\n ### \n", "H": "#   #\n#   #\n#   #\n#####\n#   #\n#   #\n#   #\n#   #\n", "I": "###\n # \n # \n # \n # \n # \n # \n###\n", "J": " ###\n   #\n   #\n   #\n   #\n   #\n#  #\n ## \n",
+           "K": "#   #\n#  # \n# #  \n##   \n# #  \n#  # \n#   #\n#   #\n", "L": "#   \n#   \n#   \n#   \n#   \n#   \n#   \n####\n", "M": "#     #\n##   ##\n# # # #\n#  #  #\n#     #\n#     #\n#     #\n#     #\n"}
 
 
 # for (key, value) in letters.items():
@@ -52,7 +53,6 @@ def renderLetter(letter, index):
                     np[(y+1+index) * matHeight - x-1] = (255, 0, 0)
                 else:
                     np[(y+1+index) * matHeight-x-1] = (0, 0, 0)
-    print(maxWidth)
     return maxWidth
 
 
@@ -63,5 +63,6 @@ def renderWord(word):
     np.write()
 
 
-renderWord("FIB")
+renderWord("MALL")
+
 
