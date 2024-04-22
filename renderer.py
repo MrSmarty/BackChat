@@ -1,4 +1,5 @@
 import neopixel
+import genericFont
 from machine import Pin
 import time
 
@@ -7,34 +8,19 @@ pinNum = 16
 matHeight = 8
 matWidth = 32
 
-P = Pin(pinNum, Pin.OUT)
-np = neopixel.NeoPixel(P, matHeight * matWidth)
+p = Pin(pinNum, Pin.OUT)
+np = neopixel.NeoPixel(p, matHeight * matWidth)
+
+#letterDicts = genericFont()
 
 word = "Hello"
-
-test = """
- ###
-#   #
-#   #
-#   #
-#####
-#   #
-#   #
-#   #
-"""
-
-letters = {"A": " ### \n#   #\n#   #\n#   #\n#####\n#   #\n#   #\n#   #\n", "B": "#### \n#   #\n#   #\n#### \n#   #\n#   #\n#   #\n#### \n", "C": " ### \n#   #\n#    \n#    \n#    \n#    \n#   #\n ### \n",
-           "D": "#### \n#   #\n#   #\n#   #\n#   #\n#   #\n#   #\n#### \n", "E": "#####\n#    \n#    \n#### \n#    \n#    \n#    \n#####\n", "F": "#####\n#    \n#    \n#### \n#    \n#    \n#    \n#    \n",
-           "G": " ### \n#   #\n#    \n# ###\n#   #\n#   #\n#   #\n ### \n", "H": "#   #\n#   #\n#   #\n#####\n#   #\n#   #\n#   #\n#   #\n", "I": "###\n # \n # \n # \n # \n # \n # \n###\n", "J": " ###\n   #\n   #\n   #\n   #\n   #\n#  #\n ## \n",
-           "K": "#   #\n#  # \n# #  \n##   \n# #  \n#  # \n#   #\n#   #\n", "L": "#   \n#   \n#   \n#   \n#   \n#   \n#   \n####\n", "M": "#     #\n##   ##\n# # # #\n#  #  #\n#     #\n#     #\n#     #\n#     #\n"}
-
 
 # for (key, value) in letters.items():
 #     print(key)
 #     print(value)
 
 def renderLetter(letter, index):
-    t = letters[letter]
+    t = genericFont.getSymbol(letter)
     t = t.split("\n")
     maxWidth = 0
     for x in range(len(t)):
@@ -64,5 +50,3 @@ def renderWord(word):
 
 
 renderWord("MALL")
-
-
