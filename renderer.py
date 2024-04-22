@@ -13,7 +13,7 @@ np = neopixel.NeoPixel(P, matHeight * matWidth)
 word = "Hello"
 
 test = """
- ### 
+ ###
 #   #
 #   #
 #   #
@@ -24,7 +24,8 @@ test = """
 """
 
 letters = {"A": " ### \n#   #\n#   #\n#   #\n#####\n#   #\n#   #\n#   #\n", "B": "#### \n#   #\n#   #\n#### \n#   #\n#   #\n#   #\n#### \n", "C": " ### \n#   #\n#    \n#    \n#    \n#    \n#   #\n ### \n",
-           "D": "#### \n#   #\n#   #\n#   #\n#   #\n#   #\n#   #\n#### \n", "E": "#####\n#    \n#    \n#### \n#    \n#    \n#    \n#####\n", "F": "#####\n#     \n#    \n#### \n#    \n#    \n#    \n#    \n", "G": " ### \n#   #\n#    \n# ###\n#   #\n#   #\n#   #\n ### \n"}
+           "D": "#### \n#   #\n#   #\n#   #\n#   #\n#   #\n#   #\n#### \n", "E": "#####\n#    \n#    \n#### \n#    \n#    \n#    \n#####\n", "F": "#####\n#    \n#    \n#### \n#    \n#    \n#    \n#    \n",
+           "G": " ### \n#   #\n#    \n# ###\n#   #\n#   #\n#   #\n ### \n", "H": "#   #\n#   #\n#   #\n#####\n#   #\n#   #\n#   #\n#   #\n", "I": "###\n # \n # \n # \n # \n # \n # \n###\n"}
 
 
 # for (key, value) in letters.items():
@@ -32,29 +33,35 @@ letters = {"A": " ### \n#   #\n#   #\n#   #\n#####\n#   #\n#   #\n#   #\n", "B":
 #     print(value)
 
 def renderLetter(letter, index):
-    for elem in letter:
-        t = letters[elem]
-        t = t.split("\n")
-        for x in range(len(t)):
-            for y in range(len(t[x])):
-                if (y+index) % 2 == 0:
-                    if t[x][y] == "#":
-                        np[x + (y+index) * matHeight] = (255, 0, 0)
-                    else:
-                        np[x + (y+index) * matHeight] = (0, 0, 0)
+    t = letters[letter]
+    t = t.split("\n")
+    maxWidth = 0
+    for x in range(len(t)):
+        for y in range(len(t[x])):
+
+            if len(t[x]) > maxWidth:
+                maxWidth = len(t[x])
+
+            if (y+index) % 2 == 0:
+                if t[x][y] == "#":
+                    np[x + (y+index) * matHeight] = (255, 0, 0)
                 else:
-                    if t[x][y] == "#":
-                        np[(y+1+index) * matHeight - x-1] = (255, 0, 0)
-                    else:
-                        np[(y+1+index) * matHeight-x-1] = (0, 0, 0)
-    np.write()
+                    np[x + (y+index) * matHeight] = (0, 0, 0)
+            else:
+                if t[x][y] == "#":
+                    np[(y+1+index) * matHeight - x-1] = (255, 0, 0)
+                else:
+                    np[(y+1+index) * matHeight-x-1] = (0, 0, 0)
+    print(maxWidth)
+    return maxWidth
 
 
 def renderWord(word):
     index = 0
     for letter in list(word):
-        renderLetter(letter, index)
-        index += 6
+        index += renderLetter(letter, index) + 1
+    np.write()
 
 
-renderWord("FAD")
+renderWord("FIB")
+
