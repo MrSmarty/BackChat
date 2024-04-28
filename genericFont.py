@@ -9,15 +9,20 @@ class genericFont():
                  "T": "#####\n  #  \n  #  \n  #  \n  #  \n  #  \n  #  \n  #  \n", "U": "#   #\n#   #\n#   #\n#   #\n#   #\n#   #\n#   #\n ### \n", "V": "#   #\n#   #\n#   #\n#   #\n#   #\n#   #\n #  # \n  #  \n",
                  "W": "#       #\n#       #\n#   #   #\n #  #  # \n # # # # \n # # # # \n  #   #  \n  #   #  \n", "X": "#   #\n#   #\n # # \n  #  \n  #  \n # # \n#   #\n#   #\n", "Y": "#   #\n#   #\n#   #\n # # \n  #  \n  #  \n  #  \n  #  \n",
                  "Z": "######\n     #\n    # \n   #  \n  #   \n #    \n#     \n######\n"}
-    lowercase = {}
+    lowercase = {"a": "     \n     \n ### \n    #\n ####\n#   #\n#   #\n ####\n",
+                 "b": "     \n#    \n#    \n#### \n#   #\n#   #\n#   #\n#### "}
 
     numbers = {"0": " ### \n#  ##\n#  ##\n# # #\n# # #\n##  #\n##  #\n ### \n",
                "1": " # \n## \n # \n # \n # \n # \n # \n###\n"}
 
     symbols = {".": " \n \n \n \n \n \n \n#\n", ",": "  \n  \n  \n  \n  \n #\n #\n# \n",
-               ";": "  \n  \n  \n #\n  \n #\n #\n# \n", ":": "  \n  \n  \n #\n  \n  \n #\n  \n", "$": "  #  \n ####\n# #  \n ### \n  # #\n  # #\n#### \n  #  \n"}
+               ";": "  \n  \n  \n #\n  \n #\n #\n# \n", ":": "  \n  \n  \n #\n  \n  \n #\n  \n", "$": "  #  \n ####\n# #  \n ### \n  # #\n  # #\n#### \n  #  \n",
+               "#": "     \n     \n # # \n#####\n # # \n # # \n#####\n # # \n", "'": "#\n#\n \n \n \n \n \n \n", "!": " \n#\n#\n#\n#\n#\n \n#\n"}
 
     space = "  \n  \n  \n  \n  \n  \n  \n  \n"
+
+    letterSpacing = " \n \n \n \n \n \n \n \n"
+    space = letterSpacing
 
     notFound = "#####\n##  #\n##  #\n# # #\n# # #\n#  ##\n#  ##\n#####\n"
 
@@ -33,7 +38,28 @@ def getSymbol(symbol):
         return genericFont.symbols[symbol]
     elif symbol == " ":
         return genericFont.space
+    elif symbol == "spacing":
+        return genericFont.letterSpacing
     else:
         return genericFont.notFound
 
+
+def getLetterSpacing():
+    return genericFont.letterSpacing
+
 # print(genericFont.numbers["1"])
+
+
+def getPixelLen(symbol):
+    if symbol in genericFont.uppercase:
+        return len(genericFont.uppercase[symbol].split("\n")[0])
+    elif symbol in genericFont.lowercase:
+        return len(genericFont.lowercase[symbol].split("\n")[0])
+    elif symbol in genericFont.numbers:
+        return len(genericFont.numbers[symbol].split("\n")[0])
+    elif symbol in genericFont.symbols:
+        return len(genericFont.symbols[symbol].split("\n")[0])
+    elif symbol == " ":
+        return len(genericFont.space.split("\n")[0])
+    else:
+        return len(genericFont.notFound.split("\n")[0])

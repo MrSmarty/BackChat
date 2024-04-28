@@ -8,10 +8,14 @@ pinNum = 16
 matHeight = 8
 matWidth = 32
 
+initialDelay = 5
+endDelay = 3
+moveDelay = 0.15
+
 p = Pin(pinNum, Pin.OUT)
 np = neopixel.NeoPixel(p, matHeight * matWidth)
 
-defaultColor = (50, 1, 1)
+defaultColor = (1, 1, 1)
 blankColor = (0, 0, 0)
 
 # letterDicts = genericFont()
@@ -29,6 +33,7 @@ def renderLetter(letter, index):
     maxWidth = 0
     for x in range(len(t)):
         for y in range(len(t[x])):
+            
             if len(t[x]) > maxWidth:
                 maxWidth = len(t[x])
             if y + index < matWidth and y + index >= 0:
@@ -52,17 +57,29 @@ def clear():
     np.write()
 
 
-def renderWord(word, index):
-    for letter in list(word):
-        index += renderLetter(letter, index) + 1
+def renderText(text, index):
+    for letter in list(text):
+        index += renderLetter(letter, index)
+        index += renderLetter("spacing", index)
+        
     np.write()
+    
+            
+def render(word):
+    totalLen = 0
+    for letter in list(word):
+        totalLen += genericFont.getPixelLen(letter) + 1
+    
+    
+    if totalLen > matWidth:
+        renderText(word, 0)
+        time.sleep(initialDelay)
+        for x in range(totalLen - matWidth):
+            renderText(word, 0-x)
+            time.sleep(moveDelay)
+        time.sleep(endDelay)
+        clear()
 
+clear()
+render("I LIKE BIG BUTTS AND I CANNOT LIE")
 
-i = 0
-# while i < 1000:
-#     clear()
-#     renderWord(".000001001", 0 - i)
-#     time.sleep(0.5)
-#     i += 1
-
-renderWord("STOP", 0)
