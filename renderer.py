@@ -3,7 +3,7 @@ import genericFont
 from machine import Pin
 import time
 
-pinNum = 16
+pinNum = 14
 
 matHeight = 8
 matWidth = 32
