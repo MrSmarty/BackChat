@@ -1,6 +1,7 @@
 import neopixel
 import genericFont
-from machine import Pin
+#from machine import Pin
+import board
 import time
 
 pinNum = 14
@@ -8,14 +9,14 @@ pinNum = 14
 matHeight = 8
 matWidth = 32
 
-initialDelay = 5
+initialDelay = 1
 endDelay = 3
-moveDelay = 0.15
+moveDelay = 0.1
 
-p = Pin(pinNum, Pin.OUT)
-np = neopixel.NeoPixel(p, matHeight * matWidth)
+#p = Pin(pinNum, Pin.OUT)
+np = neopixel.NeoPixel(board.D18, matHeight * matWidth, auto_write=False)
 
-defaultColor = (1, 1, 1)
+defaultColor = (250, 1, 1)
 blankColor = (0, 0, 0)
 
 # letterDicts = genericFont()
@@ -52,9 +53,11 @@ def renderLetter(letter, index):
 
 
 def clear():
-    for x in range(matWidth * matHeight):
-        np[x] = (0, 0, 0)
-    np.write()
+     np.fill(blankColor)
+     np.show()
+#    for x in range(matWidth * matHeight):
+#        np[x] = (0, 0, 0)
+#    np.write()
 
 
 def renderText(text, index):
@@ -62,24 +65,33 @@ def renderText(text, index):
         index += renderLetter(letter, index)
         index += renderLetter("spacing", index)
         
-    np.write()
+    np.show()
     
             
 def render(word):
+    np.fill(blankColor)
     totalLen = 0
     for letter in list(word):
         totalLen += genericFont.getPixelLen(letter) + 1
     
-    
+    renderText(word,0)
     if totalLen > matWidth:
-        renderText(word, 0)
+        #renderText(word, 0)
         time.sleep(initialDelay)
-        for x in range(totalLen - matWidth):
+        for x in range(totalLen - matWidth + 1):
             renderText(word, 0-x)
             time.sleep(moveDelay)
-        time.sleep(endDelay)
-        clear()
+   # time.sleep(endDelay)
+   # clear()
 
 clear()
-render("I LIKE BIG BUTTS AND I CANNOT LIE")
-
+# render("WEE")
+# time.sleep(1)
+# while True:
+	# defaultColor=(250,1,1)
+	# render("WOO")
+	# time.sleep(0.5)
+	# clear()
+	# defaultColor = (1,1,250)
+	# render("WEE")
+	# time.sleep(0.5)
