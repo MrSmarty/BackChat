@@ -6,11 +6,11 @@ class genericFont():
                  "K": "#   #\n#  # \n# #  \n##   \n# #  \n#  # \n#   #\n#   #\n", "L": "#   \n#   \n#   \n#   \n#   \n#   \n#   \n####\n", "M": "#     #\n##   ##\n# # # #\n#  #  #\n#     #\n#     #\n#     #\n#     #\n",
                  "N": "#   #\n##  #\n##  #\n# # #\n# # #\n#  ##\n#  ##\n#   #\n", "O": " #### \n#    #\n#    #\n#    #\n#    #\n#    #\n#    #\n #### \n", "P": "#### \n#   #\n#   #\n#### \n#    \n#    \n#    \n#    \n",
                  "Q": " #### \n#    #\n#    #\n#    #\n#    #\n#    #\n#  # #\n #### \n    # \n", "R": "#### \n#   #\n#   #\n#### \n# #  \n#  # \n#   #\n#   #\n", "S": " ####\n#    \n#    \n ### \n    #\n    #\n    #\n#### \n",
-                 "T": "#####\n  #  \n  #  \n  #  \n  #  \n  #  \n  #  \n  #  \n", "U": "#   #\n#   #\n#   #\n#   #\n#   #\n#   #\n#   #\n ### \n", "V": "#   #\n#   #\n#   #\n#   #\n#   #\n#   #\n #  # \n  #  \n",
+                 "T": "#####\n  #  \n  #  \n  #  \n  #  \n  #  \n  #  \n  #  \n", "U": "#   #\n#   #\n#   #\n#   #\n#   #\n#   #\n#   #\n ### \n", "V": "#   #\n#   #\n#   #\n#   #\n#   #\n#   #\n # # \n  #  \n",
                  "W": "#       #\n#       #\n#   #   #\n #  #  # \n # # # # \n # # # # \n  #   #  \n  #   #  \n", "X": "#   #\n#   #\n # # \n  #  \n  #  \n # # \n#   #\n#   #\n", "Y": "#   #\n#   #\n#   #\n # # \n  #  \n  #  \n  #  \n  #  \n",
                  "Z": "######\n     #\n    # \n   #  \n  #   \n #    \n#     \n######\n"}
-    lowercase = {"a": "     \n     \n ### \n    #\n ####\n#   #\n#   #\n ####\n",
-                 "b": "     \n#    \n#    \n#### \n#   #\n#   #\n#   #\n#### "}
+
+    lowercase = {"a": "     \n     \n ### \n    #\n ####\n#   #\n#   #\n ####\n", "b": "     \n#    \n#    \n#### \n#   #\n#   #\n#   #\n#### \n", "c":"     \n     \n ### \n#   #\n#    \n#    \n#   #\n ### \n", "d":"     \n    #\n    #\n ####\n#   #\n#   #\n#   #\n ####\n"}
 
     numbers = {"0": " ### \n#  ##\n#  ##\n# # #\n# # #\n##  #\n##  #\n ### \n",
                "1": " # \n## \n # \n # \n # \n # \n # \n###\n"}
@@ -22,7 +22,7 @@ class genericFont():
     space = "  \n  \n  \n  \n  \n  \n  \n  \n"
 
     letterSpacing = " \n \n \n \n \n \n \n \n"
-    space = letterSpacing
+    #space = letterSpacing
 
     notFound = "#####\n##  #\n##  #\n# # #\n# # #\n#  ##\n#  ##\n#####\n"
 
@@ -40,6 +40,8 @@ def getSymbol(symbol):
         return genericFont.space
     elif symbol == "spacing":
         return genericFont.letterSpacing
+    elif symbol.upper() in genericFont.uppercase:
+        return genericFont.uppercase[symbol.upper()]
     else:
         return genericFont.notFound
 

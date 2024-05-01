@@ -7,9 +7,9 @@ import time
 pinNum = 14
 
 matHeight = 8
-matWidth = 32
+matWidth = 32 * 2
 
-initialDelay = 1
+initialDelay = 1.5
 endDelay = 3
 moveDelay = 0.1
 
@@ -81,8 +81,9 @@ def render(word):
         for x in range(totalLen - matWidth + 1):
             renderText(word, 0-x)
             time.sleep(moveDelay)
-   # time.sleep(endDelay)
-   # clear()
+
+    time.sleep(endDelay)
+    clear()
 
 clear()
 # render("WEE")
