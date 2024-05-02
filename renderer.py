@@ -4,7 +4,7 @@ import genericFont
 import board
 import time
 
-pinNum = 14
+pinNum = 5
 
 matHeight = 8
 matWidth = 32 * 2
@@ -14,9 +14,9 @@ endDelay = 3
 moveDelay = 0.1
 
 #p = Pin(pinNum, Pin.OUT)
-np = neopixel.NeoPixel(board.D18, matHeight * matWidth, auto_write=False)
+np = neopixel.NeoPixel(board.D21, matHeight * matWidth, auto_write=False)
 
-defaultColor = (250, 1, 1)
+defaultColor = (50, 1, 1)
 blankColor = (0, 0, 0)
 
 # letterDicts = genericFont()
@@ -69,6 +69,7 @@ def renderText(text, index):
     
             
 def render(word):
+    print("rendering " + word)
     np.fill(blankColor)
     totalLen = 0
     for letter in list(word):
@@ -86,6 +87,7 @@ def render(word):
     clear()
 
 clear()
+#render("TEST")
 # render("WEE")
 # time.sleep(1)
 # while True:
